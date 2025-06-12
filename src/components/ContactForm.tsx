@@ -52,17 +52,20 @@ const ContactForm = () => {
     setIsLoading(true);
 
     // Симуляция отправки формы
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     console.log("Form data:", data);
-    toast.success("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
+    toast.success("Заявка отправлена! Мы свяжемся с вами в течение 2 часов.");
     form.reset();
     setIsLoading(false);
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">Обсудить проект</h3>
+    <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+      <h3 className="text-3xl font-bold text-gray-900 mb-2">Обсудить проект</h3>
+      <p className="text-gray-600 mb-8">
+        Получите персональное предложение за 24 часа
+      </p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -72,9 +75,9 @@ const ContactForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Имя *</FormLabel>
+                  <FormLabel>Ваше имя *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ваше имя" {...field} />
+                    <Input placeholder="Иван Петров" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -88,7 +91,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel>Компания *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Название компании" {...field} />
+                    <Input placeholder="ООО 'Название компании'" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,11 +105,11 @@ const ContactForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email *</FormLabel>
+                  <FormLabel>Рабочий email *</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="ivan@company.com"
                       {...field}
                     />
                   </FormControl>
@@ -150,8 +153,11 @@ const ContactForm = () => {
                       Подбор персонала
                     </SelectItem>
                     <SelectItem value="assessment">Оценка персонала</SelectItem>
-                    <SelectItem value="adaptation">Адаптация</SelectItem>
+                    <SelectItem value="adaptation">
+                      Адаптация персонала
+                    </SelectItem>
                     <SelectItem value="consulting">HR-консалтинг</SelectItem>
+                    <SelectItem value="complex">Комплексное решение</SelectItem>
                     <SelectItem value="other">Другое</SelectItem>
                   </SelectContent>
                 </Select>
@@ -165,10 +171,10 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Сообщение *</FormLabel>
+                <FormLabel>Расскажите о задаче *</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Расскажите подробнее о вашем проекте..."
+                    placeholder="Опишите вашу задачу, требования к кандидатам, сроки..."
                     className="min-h-[120px]"
                     {...field}
                   />
@@ -181,11 +187,15 @@ const ContactForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="w-full py-6 text-lg"
             disabled={isLoading}
           >
-            {isLoading ? "Отправляем..." : "Отправить заявку"}
+            {isLoading ? "Отправляем..." : "Получить предложение"}
           </Button>
+
+          <p className="text-sm text-gray-500 text-center">
+            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+          </p>
         </form>
       </Form>
     </div>

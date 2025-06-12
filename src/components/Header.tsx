@@ -22,11 +22,11 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-primary text-white rounded-lg px-3 py-1 font-bold text-xl">
+            <div className="bg-primary text-white rounded-lg px-3 py-2 font-bold text-xl">
               IN HOUSE
             </div>
             <span className="text-sm text-gray-600 hidden sm:block">
-              HR-решения для роста вашего бизнеса
+              HR-решения для роста бизнеса
             </span>
           </Link>
 
@@ -38,7 +38,7 @@ const Header = () => {
                 to={item.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   location.pathname === item.href
-                    ? "text-primary border-b-2 border-primary"
+                    ? "text-primary border-b-2 border-primary pb-1"
                     : "text-gray-700"
                 }`}
               >
